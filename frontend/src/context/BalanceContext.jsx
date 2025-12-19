@@ -13,6 +13,7 @@ export const useBalance = () => {
 export const BalanceProvider = ({ children }) => {
   const [balance, setBalance] = useState(0);
   const [totalInvestment, setTotalInvestment] = useState(0);
+  const [investments, setInvestments] = useState([]);
   const [dailyGrowth, setDailyGrowth] = useState(0);
   const [referralEarnings, setReferralEarnings] = useState(0);
 
@@ -32,6 +33,30 @@ export const BalanceProvider = ({ children }) => {
   const invest = (amount) => {
     setTotalInvestment(prev => prev + amount);
     setBalance(prev => prev + amount);
+  };
+
+  const PLANS = {
+    bronze: { key: 'bronze', name: 'BRONZE PLAN', emoji: '🟤', min: 100, max: 499, returns: '2–4% per month', period: '30 days' },
+    silver: { key: 'silver', name: 'SILVER PLAN', emoji: '⚪', min: 500, max: 4999, returns: '5–8% per month', period: '60 days' },
+    platinum: { key: 'platinum', name: 'PLATINUM PLAN', emoji: '🔵', min: 5000, max: 49999, returns: '9–14% per month', period: '90 days' },
+    gold: { key: 'gold', name: 'GOLD PLAN', emoji: '🟡', min: 50000, max: Infinity, returns: '15–20% per month', period: '6–12 months' },
+  };
+
+  const investPlan = (planKey, amount) => {
+    const plan = PLANS[planKey];
+    if (!plan) return { success: false, message: 'Invalid plan selected' };
+    const num = Number(amount);
+    if (isNaN(num) || num <= 0) return { success: false, message: 'Enter a valid amount' };
+    if (num < plan.min) return { success: false, message: `Minimum investment for ${plan.name} is Ksh ${plan.min}` };
+    if (num > plan.max) return { success: false, message: `Maximum investment for ${plan.name} is Ksh ${plan.max === Infinity ? '∞' : plan.max}` };
+
+    // Register investment locally
+    const investment = { id: Date.now(), plan: planKey, amount: num, date: new Date().toISOString() };
+    setInvestments(prev => [investment, ...prev]);
+    // Reuse existing invest logic to affect totals
+    invest(num);
+
+    return { success: true, investment };
   };
 
   const addReferralCommission = (amount) => {
@@ -55,7 +80,10 @@ export const BalanceProvider = ({ children }) => {
       totalInvestment,
       dailyGrowth,
       referralEarnings,
+      investments,
+      PLANS,
       invest,
+      investPlan,
       addReferralCommission,
       withdraw
     }}>
