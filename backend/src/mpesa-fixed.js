@@ -41,7 +41,7 @@ const stkPush = async (req, res) => {
       PhoneNumber: phone_number,
       CallBackURL: 'http://localhost:5000/api/mpesa/callback',
       AccountReference: `FIXGOAL_${userId}_${Date.now()}`,
-      TransactionDesc: 'Fortune Farm Deposit'
+      TransactionDesc: 'WealthRise Deposit'
     };
 
     const response = await axios.post(`${MPESA_CONFIG.base_url}/mpesa/stkpush/v1/processrequest`, stkPushData, {

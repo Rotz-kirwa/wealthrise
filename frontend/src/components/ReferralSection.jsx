@@ -7,7 +7,7 @@ const ReferralSection = () => {
   const [copied, setCopied] = useState(false);
   
   const userName = user?.user?.name || 'user';
-  const referralLink = `https://fortunefarm.com/register?ref=${userName.toLowerCase().replace(/\s+/g, '')}`;
+  const referralLink = `https://wealthrise.com/register?ref=${userName.toLowerCase().replace(/\s+/g, '')}`;
   
   const copyToClipboard = () => {
     navigator.clipboard.writeText(referralLink);
@@ -18,8 +18,8 @@ const ReferralSection = () => {
   const shareReferral = () => {
     if (navigator.share) {
       navigator.share({
-        title: 'Join Fortune Farm',
-        text: `Join me on Fortune Farm and start earning! Use my referral link to get started.`,
+        title: 'Join WealthRise',
+          text: `Join me on WealthRise and start earning! Use my referral link to get started.`,
         url: referralLink,
       });
     } else {

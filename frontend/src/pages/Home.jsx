@@ -177,7 +177,7 @@ const Home = () => {
       <section className="py-8 sm:py-12 lg:py-16 px-4 bg-gray-800">
         <div className="container mx-auto">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center text-white mb-6 sm:mb-8 lg:mb-12">
-            Why Choose Fortune Farm?
+            Why Choose WealthRise?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             <div className="text-center p-6">
@@ -203,7 +203,7 @@ const Home = () => {
       <section className="py-8 sm:py-12 lg:py-16 px-4 bg-green-600 text-white">
         <div className="container mx-auto text-center">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">Ready to Start Your Investment Journey?</h2>
-          <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8">Join thousands of investors building wealth with Fortune Farm</p>
+          <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8">Join thousands of investors building wealth with WealthRise</p>
           <Link 
             to={user ? "/deposit" : "/register"}
             className="bg-white text-gray-900 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition"

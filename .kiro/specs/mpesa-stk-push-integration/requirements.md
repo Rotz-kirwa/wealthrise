@@ -2,13 +2,13 @@
 
 ## Introduction
 
-This feature will integrate M-Pesa STK Push functionality into the Fortune Farm investment platform, allowing users to make deposits directly to their accounts using their mobile phone numbers. When a user initiates a deposit, they will receive an STK Push notification on their phone to authorize the payment, making the deposit process seamless and secure.
+This feature will integrate M-Pesa STK Push functionality into the WealthRise investment platform, allowing users to make deposits directly to their accounts using their mobile phone numbers. When a user initiates a deposit, they will receive an STK Push notification on their phone to authorize the payment, making the deposit process seamless and secure.
 
 ## Requirements
 
 ### Requirement 1
 
-**User Story:** As an investor, I want to deposit money into my Fortune Farm account using M-Pesa STK Push, so that I can quickly fund my investment portfolio without leaving the platform.
+**User Story:** As an investor, I want to deposit money into my WealthRise account using M-Pesa STK Push, so that I can quickly fund my investment portfolio without leaving the platform.
 
 #### Acceptance Criteria
 

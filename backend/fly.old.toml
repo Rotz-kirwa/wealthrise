@@ -1,4 +1,4 @@
-app = "fortune-farm-backend"
+app = "wealthrise-backend"
 primary_region = "fra"
 
 [build]

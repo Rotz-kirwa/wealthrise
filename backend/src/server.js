@@ -1,4 +1,4 @@
-console.log('Starting Fortune Farm server...');
+console.log('Starting WealthRise server...');
 console.log('Node version:', process.version);
 console.log('Environment:', process.env.NODE_ENV);
 console.log('Port:', process.env.PORT);
@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 10000;
 console.log('App loaded, starting server on port:', PORT);
 
 const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`✅ Fortune Farm server running on port ${PORT}`);
+  console.log(`✅ WealthRise server running on port ${PORT}`);
   console.log(`Server URL: http://0.0.0.0:${PORT}`);
 });
 

@@ -18,7 +18,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Fortune Farm API Server', status: 'running' });
+  res.json({ message: 'WealthRise API Server', status: 'running' });
 });
 
 app.get('/api/test', (req, res) => {

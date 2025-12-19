@@ -1,6 +1,6 @@
-# Fortune Farm 🌱💰
+# WealthRise 🌱💰
 
-Hey there! Welcome to Fortune Farm - my take on building an investment platform that actually makes sense. Think of it like MoneyTree, but built from scratch with modern tools and a lot of coffee.
+Hey there! Welcome to WealthRise - my take on building an investment platform that actually makes sense. Think of it like MoneyTree, but built from scratch with modern tools and a lot of coffee.
 
 ## What's This All About?
 

@@ -10,7 +10,7 @@ const MPESA_CONFIG = {
   consumer_key: process.env.MPESA_CONSUMER_KEY || 'QrUdWSBOAgCC8Ky60sGssRAA9NnNuy8rDxrWYGoBIEIOcxqn',
   consumer_secret: process.env.MPESA_CONSUMER_SECRET || 'AXzu4uZeYD3GnFOTK9w8jnI0VjqC8R6LpKnGW0kgPaENuqvaJjAazi9J3KbfqBTz',
   business_short_code: process.env.MPESA_SHORTCODE || '174379',
-  business_name: 'Fortune Farm',
+  business_name: 'WealthRise',
   passkey: process.env.MPESA_PASSKEY || 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919',
   base_url: process.env.MPESA_BASE_URL || 'https://sandbox.safaricom.co.ke'
 };
@@ -132,7 +132,7 @@ app.post('/api/mpesa/stkpush', require('./middleware/auth').authenticateToken, a
       PhoneNumber: phone_number,
       CallBackURL: 'http://localhost:5000/api/mpesa/callback',
       AccountReference: `FIXGOAL_${userId}_${Date.now()}`,
-      TransactionDesc: 'Fortune Farm Deposit'
+      TransactionDesc: 'WealthRise Deposit'
     };
 
     const response = await axios.post(`${MPESA_CONFIG.base_url}/mpesa/stkpush/v1/processrequest`, stkPushData, {
@@ -165,7 +165,7 @@ app.use('/api/admin', adminRoutes);
 
 app.get('/', (req, res) => {
   console.log('Root endpoint hit');
-  res.json({ message: 'Fortune Farm API Server with M-Pesa', status: 'running', mpesa: 'enabled' });
+  res.json({ message: 'WealthRise API Server with M-Pesa', status: 'running', mpesa: 'enabled' });
 });
 
 app.get('/api/test', (req, res) => {
@@ -178,7 +178,7 @@ app.get('/api/test', (req, res) => {
 
 app.get('/api/status', (req, res) => {
   res.json({ 
-    server: 'Fortune Farm',
+    server: 'WealthRise',
     mpesa: 'integrated',
     routes: ['/api/mpesa/test', '/api/mpesa/stkpush'],
     timestamp: new Date().toISOString() 

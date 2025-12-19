@@ -38,7 +38,7 @@ router.post('/stkpush', auth, async (req, res) => {
       PhoneNumber: phone_number,
       CallBackURL: MPESA_CONFIG.callback_url,
       AccountReference: transaction_id,
-      TransactionDesc: 'Fortune Farm Deposit'
+      TransactionDesc: 'WealthRise Deposit'
     };
 
     const stkUrl = `${MPESA_CONFIG.base_url}/mpesa/stkpush/v1/processrequest`;

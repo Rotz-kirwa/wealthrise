@@ -2,7 +2,7 @@
 
 ## Overview
 
-This design document outlines the implementation of M-Pesa STK Push integration for the Fortune Farm investment platform. The integration will enable users to deposit funds directly from their M-Pesa accounts using the Safaricom Daraja API. The solution follows a secure, scalable architecture that handles real-time payment processing, callback management, and transaction tracking.
+This design document outlines the implementation of M-Pesa STK Push integration for the WealthRise investment platform. The integration will enable users to deposit funds directly from their M-Pesa accounts using the Safaricom Daraja API. The solution follows a secure, scalable architecture that handles real-time payment processing, callback management, and transaction tracking.
 
 ## Architecture
 
@@ -113,7 +113,7 @@ class CallbackHandler {
 {
   phoneNumber: "254712345678",
   amount: 1000,
-  description: "Fortune Farm Deposit"
+  description: "WealthRise Deposit"
 }
 
 // Initiate Deposit Response

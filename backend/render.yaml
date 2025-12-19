@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: fortune-farm-backend
+    name: wealthrise-backend
     env: node
     buildCommand: npm install
     startCommand: npm start

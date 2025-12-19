@@ -11,7 +11,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-900 pt-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 uppercase italic">Fortune Farm Dashboard</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 uppercase italic">WealthRise Dashboard</h1>
         
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
