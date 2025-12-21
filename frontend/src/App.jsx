@@ -7,7 +7,9 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import Deposit from './pages/Deposit';
+import Invest from './pages/Invest';
 import Admin from './pages/Admin';
+import Referrals from './pages/Referrals';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -44,6 +46,8 @@ function App() {
                   </ProtectedRoute>
                 } 
               />
+              <Route path="/invest" element={<Invest />} />
+              <Route path="/referrals" element={<Referrals />} />
               <Route path="/admin" element={<Admin />} />
             </Routes>
           </div>

@@ -5,6 +5,17 @@ const axios = require('axios');
 require('dotenv').config();
 console.log('Express and dependencies loaded');
 
+// Environment validation
+if (!process.env.JWT_SECRET) {
+  console.error('❌ Missing required environment variable: JWT_SECRET');
+  if (process.env.NODE_ENV === 'production') {
+    console.error('In production JWT_SECRET is required. Exiting.');
+    process.exit(1);
+  } else {
+    console.warn('Running without JWT_SECRET set. This is unsafe; please set JWT_SECRET in production.');
+  }
+}
+
 // M-Pesa Configuration
 const MPESA_CONFIG = {
   consumer_key: process.env.MPESA_CONSUMER_KEY || 'QrUdWSBOAgCC8Ky60sGssRAA9NnNuy8rDxrWYGoBIEIOcxqn',
@@ -15,16 +26,36 @@ const MPESA_CONFIG = {
   base_url: process.env.MPESA_BASE_URL || 'https://sandbox.safaricom.co.ke'
 };
 
+// Warn about MPESA configuration if missing in production
+if (process.env.NODE_ENV === 'production') {
+  if (!process.env.MPESA_CONSUMER_KEY || !process.env.MPESA_CONSUMER_SECRET || !process.env.MPESA_PASSKEY) {
+    console.warn('⚠️ MPESA credentials are not fully configured. STK Push and related features may not work.');
+  }
+}
+
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 const adminRoutes = require('./routes/admin');
+const investmentsRoutes = require('./routes/investments');
 
 const app = express();
 console.log('Express app created');
 
 // CORS middleware - FIXED VERSION
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  const allowed = process.env.CORS_ALLOWED_ORIGINS; // comma separated list
+  if (allowed) {
+    const origins = allowed.split(',').map(o => o.trim());
+    const origin = req.headers.origin;
+    if (origins.includes(origin)) {
+      res.header('Access-Control-Allow-Origin', origin);
+    }
+  } else {
+    res.header('Access-Control-Allow-Origin', '*');
+    if (process.env.NODE_ENV === 'production') {
+      console.warn('⚠️ CORS is wide open in production. Consider setting CORS_ALLOWED_ORIGINS.');
+    }
+  }
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   
@@ -162,6 +193,7 @@ app.post('/api/mpesa/stkpush', require('./middleware/auth').authenticateToken, a
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/investments', investmentsRoutes);
 
 app.get('/', (req, res) => {
   console.log('Root endpoint hit');

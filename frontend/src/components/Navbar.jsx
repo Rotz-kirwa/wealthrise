@@ -1,10 +1,21 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { LogOut, User, DollarSign, Menu, X } from 'lucide-react';
+import { useBalance } from '../context/BalanceContext';
+import { LogOut, User, DollarSign, Menu, X, Plus } from 'lucide-react';
 import { useState } from 'react';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+  let balance = 0;
+  
+  try {
+    const balanceContext = useBalance();
+    balance = balanceContext.balance || 0;
+  } catch (error) {
+    // Balance context not available
+    balance = 0;
+  }
+  
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -25,7 +36,15 @@ const Navbar = () => {
                   <Link to="/" className="hover:text-green-300 text-green-400">Main Board</Link>
                 )}
                 <Link to="/dashboard" className="hover:text-green-300 text-green-400">Dashboard</Link>
-                <Link to="/deposit" className="hover:text-green-300 text-green-400">Account</Link>
+                <Link to="/deposit" className="hover:text-green-300 text-green-400 flex items-center relative group">
+                  <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl group-hover:from-green-400 group-hover:to-emerald-500">
+                    <Plus className="w-6 h-6 text-white font-bold" />
+                  </div>
+                  <span className="ml-2 text-sm font-medium">KES {balance.toFixed(2)}</span>
+                  <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    Balance: KES {balance.toFixed(2)}
+                  </div>
+                </Link>
                 <div className="flex items-center space-x-2">
                   <User className="w-4 h-4" />
                   <span className="hidden lg:inline">{user.name}</span>
@@ -85,10 +104,13 @@ const Navbar = () => {
                   </Link>
                   <Link 
                     to="/deposit" 
-                    className="text-green-400 hover:text-green-300 px-2 py-1"
+                    className="text-green-400 hover:text-green-300 px-2 py-1 flex items-center space-x-2 group"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Account
+                    <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-110">
+                      <Plus className="w-5 h-5 text-white" />
+                    </div>
+                    <span>Balance: KES {balance.toFixed(2)}</span>
                   </Link>
                   <button 
                     onClick={() => {

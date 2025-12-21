@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import api from '../services/api';
 
 const BalanceContext = createContext();
 
@@ -17,11 +18,11 @@ export const BalanceProvider = ({ children }) => {
   const [dailyGrowth, setDailyGrowth] = useState(0);
   const [referralEarnings, setReferralEarnings] = useState(0);
 
-  // Simulate daily growth (2% per day)
+  // Simulate daily growth (1.5% per day)
   useEffect(() => {
     if (totalInvestment > 0) {
       const interval = setInterval(() => {
-        const dailyReturn = totalInvestment * 0.02; // 2% daily return
+        const dailyReturn = totalInvestment * 0.015; // 1.5% daily return
         setDailyGrowth(prev => prev + dailyReturn);
         setBalance(prev => prev + dailyReturn);
       }, 5000); // Update every 5 seconds for demo (in real app, this would be daily)
@@ -36,10 +37,10 @@ export const BalanceProvider = ({ children }) => {
   };
 
   const PLANS = {
-    bronze: { key: 'bronze', name: 'BRONZE PLAN', emoji: '🟤', min: 100, max: 499, returns: '2–4% per month', period: '30 days' },
-    silver: { key: 'silver', name: 'SILVER PLAN', emoji: '⚪', min: 500, max: 4999, returns: '5–8% per month', period: '60 days' },
-    platinum: { key: 'platinum', name: 'PLATINUM PLAN', emoji: '🔵', min: 5000, max: 49999, returns: '9–14% per month', period: '90 days' },
-    gold: { key: 'gold', name: 'GOLD PLAN', emoji: '🟡', min: 50000, max: Infinity, returns: '15–20% per month', period: '6–12 months' },
+    bronze: { key: 'bronze', name: 'BRONZE PLAN', emoji: '🟤', min: 100, max: 499, returns: '1.5% daily', period: '30 days' },
+    silver: { key: 'silver', name: 'SILVER PLAN', emoji: '⚪', min: 500, max: 4999, returns: '1.5% daily', period: '60 days' },
+    platinum: { key: 'platinum', name: 'PLATINUM PLAN', emoji: '🔵', min: 5000, max: 49999, returns: '1.5% daily', period: '90 days' },
+    gold: { key: 'gold', name: 'GOLD PLAN', emoji: '🟡', min: 50000, max: Infinity, returns: '1.5% daily', period: '6–12 months' },
   };
 
   const investPlan = (planKey, amount) => {
@@ -50,13 +51,45 @@ export const BalanceProvider = ({ children }) => {
     if (num < plan.min) return { success: false, message: `Minimum investment for ${plan.name} is Ksh ${plan.min}` };
     if (num > plan.max) return { success: false, message: `Maximum investment for ${plan.name} is Ksh ${plan.max === Infinity ? '∞' : plan.max}` };
 
-    // Register investment locally
+    // Register investment locally (client-only)
     const investment = { id: Date.now(), plan: planKey, amount: num, date: new Date().toISOString() };
     setInvestments(prev => [investment, ...prev]);
     // Reuse existing invest logic to affect totals
     invest(num);
 
     return { success: true, investment };
+  };
+
+  // Fetch investments from server (if authenticated)
+  const fetchInvestments = async () => {
+    try {
+      const resp = await api.get('/investments');
+      if (resp.data && resp.data.investments) {
+        setInvestments(resp.data.investments);
+      }
+    } catch (err) {
+      // ignore if not authenticated or server unreachable
+      // console.warn('Could not fetch investments', err.message);
+    }
+  };
+
+  // Create investment on server when logged in; falls back to client-only investPlan
+  const createInvestment = async (planKey, amount) => {
+    try {
+      const resp = await api.post('/investments', { plan: planKey, amount });
+      if (resp.status === 201 && resp.data) {
+        // Server saved investment and returned new balance
+        const { investment, balance: newBalance } = resp.data;
+        // Add to client list and sync totals
+        setInvestments(prev => [investment, ...prev]);
+        setBalance(Number(newBalance));
+        setTotalInvestment(prev => prev + Number(investment.amount));
+        return { success: true, investment };
+      }
+      return { success: false, message: resp.data?.message || 'Unknown server response' };
+    } catch (err) {
+      return { success: false, message: err.response?.data?.message || err.message };
+    }
   };
 
   const addReferralCommission = (amount) => {
@@ -84,6 +117,8 @@ export const BalanceProvider = ({ children }) => {
       PLANS,
       invest,
       investPlan,
+      fetchInvestments,
+      createInvestment,
       addReferralCommission,
       withdraw
     }}>

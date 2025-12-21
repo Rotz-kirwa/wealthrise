@@ -1,45 +1,60 @@
-const sqlite3 = require('sqlite3').verbose();
-const { open } = require('sqlite');
-const path = require('path');
+const { Pool } = require('pg');
+require('dotenv').config();
 
-let db;
+let pool;
 
 const initDatabase = async () => {
-  if (!db) {
-    db = await open({
-      filename: path.join(__dirname, '../../database.sqlite'),
-      driver: sqlite3.Database
+  if (!pool) {
+    pool = new Pool({
+      connectionString: process.env.DATABASE_URL || `postgresql://${process.env.DB_USER || 'postgres'}:${process.env.DB_PASSWORD || 'password'}@${process.env.DB_HOST || 'localhost'}:${process.env.DB_PORT || 5432}/${process.env.DB_NAME || 'wealthrise'}`,
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
     });
     
-    await db.exec(`
+    // Test connection
+    await pool.query('SELECT NOW()');
+    
+    // Create tables
+    await pool.query(`
       CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        email TEXT UNIQUE NOT NULL,
-        password TEXT NOT NULL,
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        phone VARCHAR(20) UNIQUE NOT NULL,
+        password VARCHAR(255) NOT NULL,
         balance DECIMAL(10,2) DEFAULT 0.00,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
     `);
     
-    await db.exec(`
+    await pool.query(`
       CREATE TABLE IF NOT EXISTS transactions (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         user_id INTEGER NOT NULL,
-        transaction_id TEXT UNIQUE NOT NULL,
-        phone_number TEXT NOT NULL,
+        transaction_id VARCHAR(255) UNIQUE NOT NULL,
+        phone_number VARCHAR(20) NOT NULL,
         amount DECIMAL(10,2) NOT NULL,
-        type TEXT NOT NULL CHECK(type IN ('deposit', 'withdrawal', 'investment')),
-        status TEXT NOT NULL DEFAULT 'pending' CHECK(status IN ('pending', 'completed', 'failed')),
-        mpesa_receipt_number TEXT,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        type VARCHAR(20) NOT NULL CHECK(type IN ('deposit', 'withdrawal', 'investment')),
+        status VARCHAR(20) NOT NULL DEFAULT 'pending' CHECK(status IN ('pending', 'completed', 'failed')),
+        mpesa_receipt_number VARCHAR(255),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (user_id) REFERENCES users (id)
+      )
+    `);
+
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS investments (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER NOT NULL,
+        plan VARCHAR(50) NOT NULL,
+        amount DECIMAL(10,2) NOT NULL,
+        status VARCHAR(20) NOT NULL DEFAULT 'active' CHECK(status IN ('active','completed','cancelled')),
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users (id)
       )
     `);
     
-    console.log('SQLite database initialized');
+    console.log('PostgreSQL database initialized');
   }
-  return db;
+  return pool;
 };
 
-module.exports = { initDatabase };
+module.exports = { initDatabase, pool: () => pool };

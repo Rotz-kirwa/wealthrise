@@ -1,31 +1,34 @@
-const { initDatabase } = require('../config/database');
+const { initDatabase, pool } = require('../config/database');
 
 class User {
-  static async create({ email, password, name }) {
-    const db = await initDatabase();
-    const result = await db.run(
-      'INSERT INTO users (email, password, name) VALUES (?, ?, ?)',
-      [email, password, name]
+  static async create({ phone, password, name }) {
+    await initDatabase();
+    const client = pool();
+    const result = await client.query(
+      'INSERT INTO users (phone, password, name) VALUES ($1, $2, $3) RETURNING id',
+      [phone, password, name]
     );
-    return result.lastID;
+    return result.rows[0].id;
   }
 
-  static async findByEmail(email) {
-    const db = await initDatabase();
-    const user = await db.get(
-      'SELECT * FROM users WHERE email = ?',
-      [email]
+  static async findByPhone(phone) {
+    await initDatabase();
+    const client = pool();
+    const result = await client.query(
+      'SELECT * FROM users WHERE phone = $1',
+      [phone]
     );
-    return user;
+    return result.rows[0];
   }
 
   static async findById(id) {
-    const db = await initDatabase();
-    const user = await db.get(
-      'SELECT * FROM users WHERE id = ?',
+    await initDatabase();
+    const client = pool();
+    const result = await client.query(
+      'SELECT * FROM users WHERE id = $1',
       [id]
     );
-    return user;
+    return result.rows[0];
   }
 }
 

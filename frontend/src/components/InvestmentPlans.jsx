@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useBalance } from '../context/BalanceContext';
+import ConfirmModal from './ConfirmModal';
+import Toast from './Toast';
 
 const PlanCard = ({ plan, onInvest }) => {
-  const [amount, setAmount] = useState(plan.min);
-  const [message, setMessage] = useState('');
+  const [amount, setAmount] = useState('');
+  const navigate = useNavigate();
 
-  const handleInvest = async () => {
-    const res = onInvest(plan.key, amount);
-    if (res.success) {
-      setMessage(`✅ Invested Ksh ${amount} in ${plan.name}`);
-      setAmount(plan.min);
-      setTimeout(() => setMessage(''), 4000);
-    } else {
-      setMessage(`❌ ${res.message}`);
-      setTimeout(() => setMessage(''), 4000);
-    }
+  const handleInvest = () => {
+    // Navigate to deposit page with investment details
+    navigate('/deposit', { 
+      state: { 
+        investmentPlan: plan.key,
+        investmentAmount: amount,
+        planName: plan.name 
+      } 
+    });
   };
+
+
 
   return (
     <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-md">
@@ -41,15 +45,17 @@ const PlanCard = ({ plan, onInvest }) => {
       <div className="flex items-center space-x-2">
         <input
           type="number"
-          min={plan.min}
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+          placeholder={plan.max === Infinity ? `${plan.min}+` : `${plan.min}-${plan.max}`}
           className="w-1/2 px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded"
+          min={plan.min}
+          max={plan.max === Infinity ? undefined : plan.max}
         />
         <button onClick={handleInvest} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Invest</button>
       </div>
 
-      {message && <p className="mt-3 text-sm">{message}</p>}
+
     </div>
   );
 };
@@ -63,8 +69,8 @@ const InvestmentPlans = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {plans.map((plan) => (
         <PlanCard key={plan.key} plan={{...plan,
-          goal: plan.key === 'gold' ? 'High-net-worth & institutional-level clients' : plan.key === 'platinum' ? 'Serious investors, long-term retention' : plan.key === 'silver' ? 'Core user base & recurring revenue' : 'First-time investors, trust-building',
-          features: plan.key === 'bronze' ? ['Manual investment','Monthly payouts','Basic portfolio dashboard','Email/SMS notifications','No compounding'] : plan.key === 'silver' ? ['Optional auto-reinvestment','Monthly performance reports','Priority withdrawals','Partial compounding','Telegram / WhatsApp alerts'] : plan.key === 'platinum' ? ['Full compounding','Faster withdrawals (24–48 hours)','Advanced portfolio analytics','Early access to premium opportunities','Dedicated support channel'] : ['Full compounding','Faster withdrawals','Advanced analytics','Long term opportunities']
+          goal: plan.key === 'gold' ? 'Elite tier: Make more in a year than most do in five' : plan.key === 'platinum' ? 'Multiply your wealth — Turn 10K into 100K+' : plan.key === 'silver' ? 'Double your money in 60 days' : 'Your first step to financial freedom',
+          features: plan.key === 'bronze' ? ['⚡ Activate in 60 seconds — Money starts working immediately','📈 Watch it grow daily — 1.5% compounds every 24 hours','💸 Turn hundreds into thousands — Proven wealth multiplier','🔔 Never miss a profit — Real-time earnings alerts','🎁 Instant bonus — Extra 5% on first deposit'] : plan.key === 'silver' ? ['🔄 Auto-reinvest mode — Compound gains automatically','📊 Track every shilling — Live profit dashboard','⚡ Withdraw anytime — No penalties, no waiting','💎 2x earnings days — Random bonus multipliers','👥 Referral jackpot — Earn 10% from friends profits'] : plan.key === 'platinum' ? ['🏆 Triple compounding — Profits multiply exponentially','⚡ Instant withdrawals — Cash hits M-Pesa in under 5 minutes','📈 Insider analytics — Predict peak profit windows','🎯 VIP-only deals — Access to 2%–3% daily flash opportunities','👑 Personal advisor — WhatsApp support 24/7'] : ['💎 Exponential compounding — 1.5% daily = 5,475% annual equivalent','🚀 Priority withdrawals — Money in your account in 60 seconds','🧠 AI profit optimizer — Automated max-gain strategies','🌟 Exclusive high-yield drops — Pre-access to 5%–10% monthly opportunities','🛡️ Insurance-backed — Your capital is 100% protected']
         }} onInvest={investPlan} />
       ))}
     </div>

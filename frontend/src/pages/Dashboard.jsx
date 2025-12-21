@@ -11,58 +11,52 @@ const Dashboard = () => {
       <div className="max-w-7xl mx-auto">
         <h1 className="text-2xl sm:text-3xl font-bold text-white mb-6 sm:mb-8 uppercase italic">WealthRise Dashboard</h1>
         
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
-          <div className="bg-gray-800 p-6 rounded-lg shadow border border-gray-700">
+        {/* Stats Bar */}
+        <div className="bg-gray-800 p-4 sm:p-6 rounded-lg shadow border border-gray-700 mb-6 sm:mb-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 sm:gap-6">
             <div className="flex items-center">
-              <DollarSign className="w-8 h-8 text-green-600" />
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-400">Total Balance</p>
-                <p className="text-2xl font-bold text-white animate-pulse">KES {balance.toFixed(2)}</p>
+              <DollarSign className="w-6 h-6 text-green-600 mr-2" />
+              <div>
+                <p className="text-xs text-gray-400">Total Balance</p>
+                <p className="text-lg font-bold text-white">KES {balance.toFixed(2)}</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center">
+              <TrendingUp className="w-6 h-6 text-blue-600 mr-2" />
+              <div>
+                <p className="text-xs text-gray-400">Daily Growth</p>
+                <p className="text-lg font-bold text-green-600">+KES {dailyGrowth.toFixed(2)}</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center">
+              <PieChart className="w-6 h-6 text-purple-600 mr-2" />
+              <div>
+                <p className="text-xs text-gray-400">Total Investment</p>
+                <p className="text-lg font-bold text-white">KES {totalInvestment.toFixed(2)}</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center">
+              <Activity className="w-6 h-6 text-orange-600 mr-2" />
+              <div>
+                <p className="text-xs text-gray-400">Referral Earnings</p>
+                <p className="text-lg font-bold text-green-600">+KES {referralEarnings.toFixed(2)}</p>
               </div>
             </div>
           </div>
-          
-          <div className="bg-gray-800 p-6 rounded-lg shadow border border-gray-700">
-            <div className="flex items-center">
-              <TrendingUp className="w-8 h-8 text-blue-600" />
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-400">Daily Growth</p>
-                <p className="text-2xl font-bold text-green-600 animate-pulse">+KES {dailyGrowth.toFixed(2)}</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gray-800 p-6 rounded-lg shadow border border-gray-700">
-            <div className="flex items-center">
-              <PieChart className="w-8 h-8 text-purple-600" />
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-400">Total Investment</p>
-                <p className="text-2xl font-bold text-white">KES {totalInvestment.toFixed(2)}</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-gray-800 p-6 rounded-lg shadow border border-gray-700">
-            <div className="flex items-center">
-              <Activity className="w-8 h-8 text-orange-600" />
-              <div className="ml-4">
-                <p className="text-sm font-medium text-gray-400">Referral Earnings</p>
-                <p className="text-2xl font-bold text-green-600">+KES {referralEarnings.toFixed(2)}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Referral Section */}
-        <div className="mb-8">
-          <ReferralSection />
         </div>
 
         {/* Investment Plans */}
         <div className="mb-8">
           <h2 className="text-xl font-bold text-white mb-4">Investment Plans</h2>
           <InvestmentPlans />
+        </div>
+
+        {/* Referral Section */}
+        <div className="mb-8">
+          <ReferralSection />
         </div>
 
         {/* Recent Investments (local) */}

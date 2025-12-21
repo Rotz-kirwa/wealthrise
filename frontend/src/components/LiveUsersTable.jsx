@@ -19,9 +19,27 @@ const LiveUsersTable = () => {
     setAvailableNames(prev => prev.filter((_, index) => index !== nameIndex));
     setUsedNames(prev => new Set([...prev, selectedName]));
     
+    // Generate more realistic investment amounts with variety
+    let investment;
+    const rand = Math.random();
+    if (rand < 0.4) {
+      // 40% chance: 100-999 (hundreds)
+      investment = Math.floor(Math.random() * 900) + 100;
+    } else if (rand < 0.7) {
+      // 30% chance: 1000-4999 (low thousands)
+      investment = Math.floor(Math.random() * 4000) + 1000;
+    } else if (rand < 0.9) {
+      // 20% chance: 5000-15000 (mid range)
+      investment = Math.floor(Math.random() * 10000) + 5000;
+    } else {
+      // 10% chance: 15000-30000 (high amounts)
+      investment = Math.floor(Math.random() * 15000) + 15000;
+    }
+    
     return {
       name: selectedName,
-      investment: Math.floor(Math.random() * 2900) + 100,
+      investment: investment,
+      payout: Math.floor(Math.random() * 95000) + 5000, // 5000-100000
       status: Math.random() > 0.3 ? 'Paid' : 'Processing',
       stage: Math.random() > 0.3 ? 2 : 1,
       createdAt: Date.now(),
@@ -92,7 +110,7 @@ const LiveUsersTable = () => {
                   {user.stage === 1 ? (
                     <span className="text-yellow-400 animate-pulse">Big Chance</span>
                   ) : (
-                    `KES ${Math.floor(user.investment * 3.5).toLocaleString()}`
+                    `KES ${user.payout.toLocaleString()}`
                   )}
                 </td>
                 <td className="px-2 sm:px-4 py-2 sm:py-3">

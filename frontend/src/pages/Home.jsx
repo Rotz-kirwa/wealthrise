@@ -3,20 +3,44 @@ import { TrendingUp, Shield, Zap, Users } from 'lucide-react';
 import LiveChart from '../components/LiveChart';
 import LiveUsersTable from '../components/LiveUsersTable';
 import { useAuth } from '../context/AuthContext';
+import { useBalance } from '../context/BalanceContext';
 
 const Home = () => {
   const { user } = useAuth();
+  let balance = 0;
+  
+  try {
+    const balanceContext = useBalance();
+    balance = balanceContext.balance || 0;
+  } catch (error) {
+    // Balance context not available
+    balance = 0;
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800">
       {/* Hero Section */}
-      <section>
+      <section className="relative">
         <img 
-          src="https://www.dropbox.com/scl/fi/jub3petorwv8sdt30rehx/sol-1.jpg?rlkey=79ja6w6l9ipxh2ak5p8x2j4pp&st=82bsc4vb&raw=1" 
+          src="https://www.dropbox.com/scl/fi/05xln7s5nhfbkwj5hiith/h.jpeg?rlkey=g5frwh08ky8e5ol5qu35f1zgm&st=rjkx8ux5&raw=1" 
           alt="Investment Hero" 
-          className="w-full mt-16 sm:mt-20"
+          className="w-full mt-12 sm:mt-16"
           loading="eager"
           decoding="async"
         />
+        <div className="absolute bottom-4 right-4 flex gap-3">
+          <Link 
+            to="/referrals"
+            className="bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-700 transition shadow-lg flex items-center"
+          >
+            🎁 REFER & EARN
+          </Link>
+          <Link 
+            to="/dashboard"
+            className="bg-green-600 text-white px-6 py-3 rounded-lg text-lg font-bold hover:bg-green-700 transition shadow-lg"
+          >
+            💰 INVEST NOW
+          </Link>
+        </div>
       </section>
 
       {/* Scrolling Withdrawals Ticker */}
@@ -205,10 +229,16 @@ const Home = () => {
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">Ready to Start Your Investment Journey?</h2>
           <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8">Join thousands of investors building wealth with WealthRise</p>
           <Link 
-            to={user ? "/deposit" : "/register"}
-            className="bg-white text-gray-900 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition"
+            to="/dashboard"
+            className="bg-green-600 text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-green-700 transition mr-4"
           >
-            {user ? "Go to Account" : "Get Started Today"}
+            💰 INVEST NOW
+          </Link>
+          <Link 
+            to={user ? "/deposit" : "/register"}
+            className="bg-white text-gray-900 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition flex items-center justify-center mx-auto w-fit"
+          >
+            {user ? `Balance: KES ${balance.toFixed(2)}` : "Get Started Today"}
           </Link>
         </div>
       </section>

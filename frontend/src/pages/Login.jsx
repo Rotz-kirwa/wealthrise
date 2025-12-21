@@ -5,7 +5,7 @@ import { authAPI } from '../services/api';
 import { Eye, EyeOff } from 'lucide-react';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ phone: '', password: '' });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -44,29 +44,26 @@ const Login = () => {
           )}
           <div className="space-y-3 sm:space-y-4">
             <input
-              type="email"
+              type="tel"
               required
               className="w-full px-3 py-3 sm:py-2 bg-gray-800 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 placeholder-gray-400 text-base"
-              placeholder="Email address"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              placeholder="Phone (07xxxxxxxx)"
+              pattern="^07\d{8}$"
+              maxLength="10"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             />
             <div className="relative">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type="number"
                 required
-                className="w-full px-3 py-3 sm:py-2 pr-10 bg-gray-800 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 placeholder-gray-400 text-base"
-                placeholder="Password"
+                className="w-full px-3 py-3 sm:py-2 bg-gray-800 border border-gray-600 text-white rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500 placeholder-gray-400 text-base"
+                placeholder="4-digit PIN"
+                maxLength="4"
+                pattern="\d{4}"
                 value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value.slice(0, 4) })}
               />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-white"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-              </button>
             </div>
           </div>
 
