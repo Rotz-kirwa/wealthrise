@@ -81,6 +81,7 @@ Building this taught me a lot about:
 
 ---
 
+*Built by Rotz and too much caffeine*
 *Built with ❤️ and way too much caffeine*
 # wealthrise
 # Updated
