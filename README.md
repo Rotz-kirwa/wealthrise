@@ -22,13 +22,18 @@ I kept things simple but solid:
 
 **The Backend** (the engine)
 - Node.js and Express handling all the heavy lifting
-- SQLite database (simple but effective)
+- PostgreSQL database (enterprise-grade, handles massive traffic)
 - JWT authentication (your data stays yours)
 - M-Pesa integration for seamless payments
 
 ## Getting Started
 
 Want to run this locally? Here's how:
+
+### Prerequisites
+1. Install PostgreSQL on your system
+2. Create a database named 'wealthrise'
+3. Update the .env file with your PostgreSQL credentials
 
 ### Backend First
 ```bash
@@ -70,10 +75,11 @@ Building this taught me a lot about:
 ## Tech Stack (For the Curious)
 
 **Frontend:** React 19, Vite, Tailwind CSS, React Router, Axios
-**Backend:** Node.js, Express, SQLite, JWT, bcryptjs
+**Backend:** Node.js, Express, PostgreSQL, JWT, bcryptjs
 **Payments:** M-Pesa Daraja API
 **Deployment:** Railway (backend), Vercel (frontend)
 
 ---
 
 *Built with ❤️ and way too much caffeine*
+# wealthrise
