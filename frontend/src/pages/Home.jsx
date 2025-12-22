@@ -23,20 +23,22 @@ const Home = () => {
         <img 
           src="https://www.dropbox.com/scl/fi/05xln7s5nhfbkwj5hiith/h.jpeg?rlkey=g5frwh08ky8e5ol5qu35f1zgm&st=rjkx8ux5&raw=1" 
           alt="Investment Hero" 
-          className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover mt-12 sm:mt-16"
+          className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover object-center mt-12 sm:mt-16"
           loading="eager"
           decoding="async"
         />
-        <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 flex flex-col sm:flex-row gap-2 sm:gap-3">
+        {/* Overlay to ensure buttons are visible */}
+        <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+        <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 flex flex-col sm:flex-row gap-2 sm:gap-3 z-10">
           <Link 
             to="/referrals"
-            className="bg-yellow-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-bold hover:bg-yellow-700 transition shadow-lg flex items-center justify-center"
+            className="bg-yellow-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-bold hover:bg-yellow-700 transition shadow-lg flex items-center justify-center backdrop-blur-sm"
           >
             🎁 REFER & EARN
           </Link>
           <Link 
             to="/dashboard"
-            className="bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg text-sm sm:text-lg font-bold hover:bg-green-700 transition shadow-lg"
+            className="bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg text-sm sm:text-lg font-bold hover:bg-green-700 transition shadow-lg backdrop-blur-sm"
           >
             💰 INVEST NOW
           </Link>
