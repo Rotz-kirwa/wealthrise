@@ -75,7 +75,7 @@ const LiveUsersTable = () => {
       const now = Date.now();
       setUsers(prev => 
         prev.map(user => {
-          if (user.stage === 1 && (now - user.createdAt) >= 20000) {
+          if (user.stage === 1 && (now - user.createdAt) >= 10000) {
             return { ...user, stage: 2, status: 'Paid' };
           }
           return user;
