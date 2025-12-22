@@ -52,15 +52,19 @@ const LiveUsersTable = () => {
     const initialUsers = Array.from({ length: 15 }, generateUser);
     setUsers(initialUsers);
 
-    // Add new user every 3 seconds and remove oldest
+    // Add new user every 20 seconds and remove oldest
     const interval = setInterval(() => {
       setUsers(prev => {
         const newUsers = [...prev];
-        newUsers.shift(); // Remove first user
-        newUsers.push(generateUser()); // Add new user at end
+        // Remove 5 random users and add 5 new ones
+        for (let i = 0; i < 5; i++) {
+          const randomIndex = Math.floor(Math.random() * newUsers.length);
+          newUsers.splice(randomIndex, 1);
+          newUsers.push(generateUser());
+        }
         return newUsers;
       });
-    }, 3000);
+    }, 20000);
 
     return () => clearInterval(interval);
   }, []);
@@ -71,7 +75,7 @@ const LiveUsersTable = () => {
       const now = Date.now();
       setUsers(prev => 
         prev.map(user => {
-          if (user.stage === 1 && (now - user.createdAt) >= 4000) {
+          if (user.stage === 1 && (now - user.createdAt) >= 20000) {
             return { ...user, stage: 2, status: 'Paid' };
           }
           return user;
