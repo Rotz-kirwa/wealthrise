@@ -67,13 +67,26 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2"
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile Menu Button and Balance */}
+          <div className="md:hidden flex items-center space-x-3">
+            {user && (
+              <Link 
+                to="/deposit" 
+                className="flex items-center space-x-2 bg-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-600 transition-colors"
+              >
+                <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+                  <Plus className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-xs font-medium text-green-400">KES {balance.toFixed(2)}</span>
+              </Link>
+            )}
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -104,13 +117,10 @@ const Navbar = () => {
                   </Link>
                   <Link 
                     to="/deposit" 
-                    className="text-green-400 hover:text-green-300 px-2 py-1 flex items-center space-x-2 group"
+                    className="text-green-400 hover:text-green-300 px-2 py-1"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <div className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-110">
-                      <Plus className="w-5 h-5 text-white" />
-                    </div>
-                    <span>Balance: KES {balance.toFixed(2)}</span>
+                    Add Funds
                   </Link>
                   <button 
                     onClick={() => {
