@@ -108,7 +108,7 @@ const LiveUsersTable = () => {
                 </td>
                 <td className="px-2 sm:px-4 py-2 sm:py-3 text-green-400 font-semibold text-xs sm:text-sm whitespace-nowrap">
                   {user.stage === 1 ? (
-                    <span className="text-yellow-400 animate-pulse">Big Chance</span>
+                    <span className="text-yellow-400 animate-pulse">Bonus Chance</span>
                   ) : (
                     `KES ${user.payout.toLocaleString()}`
                   )}
