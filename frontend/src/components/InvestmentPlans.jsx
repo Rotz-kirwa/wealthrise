@@ -19,44 +19,73 @@ const PlanCard = ({ plan, onInvest }) => {
     });
   };
 
-
-
   return (
-    <div className="bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-md">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-3">
-          <div className="text-2xl">{plan.emoji}</div>
-          <div>
-            <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
-            <p className="text-sm text-gray-400">{plan.returns} • {plan.period}</p>
+    <>
+      {/* Mobile Layout */}
+      <div className="md:hidden bg-gray-800 p-4 rounded-lg border border-gray-700 shadow-md">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center space-x-2">
+            <div className="text-lg">{plan.emoji}</div>
+            <div>
+              <h3 className="text-sm font-semibold text-white">{plan.name}</h3>
+              <p className="text-xs text-gray-400">KES {plan.min}{plan.max !== Infinity && `-${plan.max}`}</p>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="text-xs text-green-400 font-semibold">+5% Bonus</div>
+            <div className="text-xs text-blue-400">1.5% Daily</div>
           </div>
         </div>
-        <div className="text-sm text-gray-300">Min Ksh {plan.min}{plan.max !== Infinity && ` • Max Ksh ${plan.max}`}</div>
+        
+        <div className="flex items-center space-x-2">
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder={plan.max === Infinity ? `${plan.min}+` : `${plan.min}-${plan.max}`}
+            className="flex-1 px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded text-sm"
+            min={plan.min}
+            max={plan.max === Infinity ? undefined : plan.max}
+          />
+          <button onClick={handleInvest} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm font-medium">Invest</button>
+        </div>
       </div>
 
-      <p className="text-gray-400 text-sm mb-4">{plan.goal || ''}</p>
+      {/* Desktop Layout */}
+      <div className="hidden md:block bg-gray-800 p-6 rounded-lg border border-gray-700 shadow-md">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center space-x-3">
+            <div className="text-2xl">{plan.emoji}</div>
+            <div>
+              <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
+              <p className="text-sm text-gray-400">{plan.returns} • {plan.period}</p>
+            </div>
+          </div>
+          <div className="text-sm text-gray-300">Min Ksh {plan.min}{plan.max !== Infinity && ` • Max Ksh ${plan.max}`}</div>
+        </div>
 
-      <ul className="text-sm text-gray-300 mb-4 space-y-1">
-        {(plan.features || []).map((f, i) => (
-          <li key={i}>• {f}</li>
-        ))}
-      </ul>
+        <p className="text-gray-400 text-sm mb-4">{plan.goal || ''}</p>
 
-      <div className="flex items-center space-x-2">
-        <input
-          type="number"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          placeholder={plan.max === Infinity ? `${plan.min}+` : `${plan.min}-${plan.max}`}
-          className="w-1/2 px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded"
-          min={plan.min}
-          max={plan.max === Infinity ? undefined : plan.max}
-        />
-        <button onClick={handleInvest} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Invest</button>
+        <ul className="text-sm text-gray-300 mb-4 space-y-1">
+          {(plan.features || []).map((f, i) => (
+            <li key={i}>• {f}</li>
+          ))}
+        </ul>
+
+        <div className="flex items-center space-x-2">
+          <input
+            type="number"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            placeholder={plan.max === Infinity ? `${plan.min}+` : `${plan.min}-${plan.max}`}
+            className="w-1/2 px-3 py-2 bg-gray-700 border border-gray-600 text-white rounded"
+            min={plan.min}
+            max={plan.max === Infinity ? undefined : plan.max}
+          />
+          <button onClick={handleInvest} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Invest</button>
+        </div>
       </div>
-
-
-    </div>
+    </>
   );
 };
 
@@ -66,7 +95,7 @@ const InvestmentPlans = () => {
   const plans = [PLANS.bronze, PLANS.silver, PLANS.platinum, PLANS.gold];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
       {plans.map((plan) => (
         <PlanCard key={plan.key} plan={{...plan,
           goal: plan.key === 'gold' ? 'Elite tier: Make more in a year than most do in five' : plan.key === 'platinum' ? 'Multiply your wealth — Turn 10K into 100K+' : plan.key === 'silver' ? 'Double your money in 60 days' : 'Your first step to financial freedom',
