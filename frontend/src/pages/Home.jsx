@@ -23,20 +23,20 @@ const Home = () => {
         <img 
           src="https://www.dropbox.com/scl/fi/05xln7s5nhfbkwj5hiith/h.jpeg?rlkey=g5frwh08ky8e5ol5qu35f1zgm&st=rjkx8ux5&raw=1" 
           alt="Investment Hero" 
-          className="w-full mt-12 sm:mt-16"
+          className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover mt-12 sm:mt-16"
           loading="eager"
           decoding="async"
         />
-        <div className="absolute bottom-4 right-4 flex gap-3">
+        <div className="absolute bottom-2 sm:bottom-4 right-2 sm:right-4 flex flex-col sm:flex-row gap-2 sm:gap-3">
           <Link 
             to="/referrals"
-            className="bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-700 transition shadow-lg flex items-center"
+            className="bg-yellow-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs sm:text-sm font-bold hover:bg-yellow-700 transition shadow-lg flex items-center justify-center"
           >
             🎁 REFER & EARN
           </Link>
           <Link 
             to="/dashboard"
-            className="bg-green-600 text-white px-6 py-3 rounded-lg text-lg font-bold hover:bg-green-700 transition shadow-lg"
+            className="bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg text-sm sm:text-lg font-bold hover:bg-green-700 transition shadow-lg"
           >
             💰 INVEST NOW
           </Link>
@@ -44,9 +44,9 @@ const Home = () => {
       </section>
 
       {/* Scrolling Withdrawals Ticker */}
-      <div className="bg-green-600 py-2 sm:py-3 overflow-hidden">
+      <div className="bg-green-600 py-1.5 sm:py-2 md:py-3 overflow-hidden">
         <div className="flex animate-scroll-continuous whitespace-nowrap">
-          <div className="flex items-center space-x-12 text-white text-sm min-w-max">
+          <div className="flex items-center space-x-6 sm:space-x-8 md:space-x-12 text-white text-xs sm:text-sm min-w-max">
             <div className="text-center"><div>+254796-XXXX-XX</div><div>just withdrew</div><div className="font-bold">KES 4077</div></div>
             <div className="text-center"><div>+254711-XXXX-XX</div><div>just withdrew</div><div className="font-bold">KES 1386</div></div>
             <div className="text-center"><div>+254789-XXXX-XX</div><div>just withdrew</div><div className="font-bold">KES 4944</div></div>
@@ -99,7 +99,7 @@ const Home = () => {
             <div className="text-center"><div>+254709-XXXX-XX</div><div>just withdrew</div><div className="font-bold">KES 2987</div></div>
             <div className="text-center"><div>+254710-XXXX-XX</div><div>just withdrew</div><div className="font-bold">KES 4567</div></div>
           </div>
-          <div className="flex items-center space-x-12 text-white text-sm min-w-max">
+          <div className="flex items-center space-x-6 sm:space-x-8 md:space-x-12 text-white text-xs sm:text-sm min-w-max">
             <div className="text-center"><div>+254796-XXXX-XX</div><div>just withdrew</div><div className="font-bold">KES 4077</div></div>
             <div className="text-center"><div>+254711-XXXX-XX</div><div>just withdrew</div><div className="font-bold">KES 1386</div></div>
             <div className="text-center"><div>+254789-XXXX-XX</div><div>just withdrew</div><div className="font-bold">KES 4944</div></div>
@@ -146,52 +146,52 @@ const Home = () => {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white text-center mb-4 sm:mb-6 lg:mb-8">How to Start Earning</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
-            <div className="bg-gray-800 p-4 sm:p-6 rounded-lg border border-gray-700">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-600 rounded-full flex items-center justify-center mb-3 sm:mb-4">
-                <span className="text-white font-bold text-lg sm:text-xl">1</span>
+            <div className="bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg border border-gray-700">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-green-600 rounded-full flex items-center justify-center mb-2 sm:mb-3 lg:mb-4">
+                <span className="text-white font-bold text-sm sm:text-lg lg:text-xl">1</span>
               </div>
-              <h3 className="text-base sm:text-lg font-semibold text-white mb-2">Sign Up & Verify</h3>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1 sm:mb-2">Sign Up & Verify</h3>
               <p className="text-gray-400 text-xs sm:text-sm">Create account with name, email, password. Verify your identity for secure access.</p>
             </div>
             
-            <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-              <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white font-bold text-xl">2</span>
+            <div className="bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg border border-gray-700">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-green-600 rounded-full flex items-center justify-center mb-2 sm:mb-3 lg:mb-4">
+                <span className="text-white font-bold text-sm sm:text-lg lg:text-xl">2</span>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Deposit & Invest</h3>
-              <p className="text-gray-400 text-sm">Choose your investment amount. Higher investments unlock greater reward potential.</p>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1 sm:mb-2">Deposit & Invest</h3>
+              <p className="text-gray-400 text-xs sm:text-sm">Choose your investment amount. Higher investments unlock greater reward potential.</p>
             </div>
             
-            <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-              <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white font-bold text-xl">3</span>
+            <div className="bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg border border-gray-700">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-green-600 rounded-full flex items-center justify-center mb-2 sm:mb-3 lg:mb-4">
+                <span className="text-white font-bold text-sm sm:text-lg lg:text-xl">3</span>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Refer & Earn</h3>
-              <p className="text-gray-400 text-sm">Invite friends via referral link. Earn bonus rewards when they invest.</p>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1 sm:mb-2">Refer & Earn</h3>
+              <p className="text-gray-400 text-xs sm:text-sm">Invite friends via referral link. Earn bonus rewards when they invest.</p>
             </div>
             
-            <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white font-bold text-xl">4</span>
+            <div className="bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg border border-gray-700">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-blue-600 rounded-full flex items-center justify-center mb-2 sm:mb-3 lg:mb-4">
+                <span className="text-white font-bold text-sm sm:text-lg lg:text-xl">4</span>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Earn Returns</h3>
-              <p className="text-gray-400 text-sm">Your funds generate daily returns. More investment + referrals = bigger rewards.</p>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1 sm:mb-2">Earn Returns</h3>
+              <p className="text-gray-400 text-xs sm:text-sm">Your funds generate daily returns. More investment + referrals = bigger rewards.</p>
             </div>
             
-            <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white font-bold text-xl">5</span>
+            <div className="bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg border border-gray-700">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-blue-600 rounded-full flex items-center justify-center mb-2 sm:mb-3 lg:mb-4">
+                <span className="text-white font-bold text-sm sm:text-lg lg:text-xl">5</span>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Withdraw Funds</h3>
-              <p className="text-gray-400 text-sm">Reach minimum threshold and request withdrawal to your account.</p>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1 sm:mb-2">Withdraw Funds</h3>
+              <p className="text-gray-400 text-xs sm:text-sm">Reach minimum threshold and request withdrawal to your account.</p>
             </div>
             
-            <div className="bg-gray-800 p-6 rounded-lg border border-gray-700">
-              <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center mb-4">
-                <span className="text-white font-bold text-xl">6</span>
+            <div className="bg-gray-800 p-3 sm:p-4 lg:p-6 rounded-lg border border-gray-700">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-purple-600 rounded-full flex items-center justify-center mb-2 sm:mb-3 lg:mb-4">
+                <span className="text-white font-bold text-sm sm:text-lg lg:text-xl">6</span>
               </div>
-              <h3 className="text-lg font-semibold text-white mb-2">Stay Active</h3>
-              <p className="text-gray-400 text-sm">Keep investing and referring to maintain maximum earning potential.</p>
+              <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white mb-1 sm:mb-2">Stay Active</h3>
+              <p className="text-gray-400 text-xs sm:text-sm">Keep investing and referring to maintain maximum earning potential.</p>
             </div>
           </div>
         </div>
@@ -224,22 +224,24 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-8 sm:py-12 lg:py-16 px-4 bg-green-600 text-white">
+      <section className="py-6 sm:py-8 lg:py-12 px-4 bg-green-600 text-white">
         <div className="container mx-auto text-center">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">Ready to Start Your Investment Journey?</h2>
-          <p className="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8">Join thousands of investors building wealth with WealthRise</p>
-          <Link 
-            to="/dashboard"
-            className="bg-green-600 text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-green-700 transition mr-4"
-          >
-            💰 INVEST NOW
-          </Link>
-          <Link 
-            to={user ? "/deposit" : "/register"}
-            className="bg-white text-gray-900 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition flex items-center justify-center mx-auto w-fit"
-          >
-            {user ? `Balance: KES ${balance.toFixed(2)}` : "Get Started Today"}
-          </Link>
+          <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold mb-2 sm:mb-3 lg:mb-4">Ready to Start Your Investment Journey?</h2>
+          <p className="text-sm sm:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 lg:mb-8">Join thousands of investors building wealth with WealthRise</p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center">
+            <Link 
+              to="/dashboard"
+              className="bg-white text-green-600 px-6 py-3 sm:px-8 sm:py-4 rounded-lg text-base sm:text-lg lg:text-xl font-bold hover:bg-gray-100 transition w-full sm:w-auto"
+            >
+              💰 INVEST NOW
+            </Link>
+            <Link 
+              to={user ? "/deposit" : "/register"}
+              className="bg-green-700 text-white px-6 py-3 sm:px-8 sm:py-3 rounded-lg text-sm sm:text-base lg:text-lg font-semibold hover:bg-green-800 transition w-full sm:w-auto"
+            >
+              {user ? `Balance: KES ${balance.toFixed(2)}` : "Get Started Today"}
+            </Link>
+          </div>
         </div>
       </section>
     </div>
