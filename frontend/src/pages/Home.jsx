@@ -208,7 +208,7 @@ const Home = () => {
         <div className="container mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-              🚀 Why 50,000+ Investors Choose WealthRise
+              Why 50,000+ Investors Choose WealthRise
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Join Kenya's fastest-growing investment community
@@ -223,7 +223,7 @@ const Home = () => {
                 <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
                   <Shield className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 text-center">🛡️ Bank-Level Security</h3>
+                <h3 className="text-xl font-bold text-white mb-3 text-center">Bank-Level Security</h3>
                 <p className="text-blue-100 text-center text-sm leading-relaxed">
                   Your investments are protected with military-grade encryption and secure M-Pesa integration
                 </p>
@@ -242,13 +242,13 @@ const Home = () => {
                 <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
                   <Zap className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 text-center">⚡ Instant Transactions</h3>
+                <h3 className="text-xl font-bold text-white mb-3 text-center">Instant Transactions</h3>
                 <p className="text-green-100 text-center text-sm leading-relaxed">
                   Lightning-fast deposits and withdrawals through M-Pesa. Start earning in under 60 seconds
                 </p>
                 <div className="mt-4 text-center">
                   <span className="inline-block bg-white bg-opacity-20 text-white text-xs px-3 py-1 rounded-full">
-                    < 60 Seconds
+                    Under 60 Seconds
                   </span>
                 </div>
               </div>
@@ -261,7 +261,7 @@ const Home = () => {
                 <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
                   <Users className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 text-center">👥 24/7 Expert Support</h3>
+                <h3 className="text-xl font-bold text-white mb-3 text-center">24/7 Expert Support</h3>
                 <p className="text-purple-100 text-center text-sm leading-relaxed">
                   Dedicated WhatsApp support team ready to help you maximize your investment returns
                 </p>
