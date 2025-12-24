@@ -74,13 +74,13 @@ const Navbar = () => {
               <>
                 <Link 
                   to="/dashboard" 
-                  className="relative bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white px-4 py-2 rounded-lg font-bold shadow-lg transform transition-all duration-300 hover:scale-110 animate-pulse text-sm"
+                  className="relative bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white px-2 py-1 rounded-md font-bold shadow-lg transform transition-all duration-300 hover:scale-110 animate-pulse text-xs"
                 >
                   <span className="relative z-10 flex items-center space-x-1">
                     <span>💰</span>
-                    <span>Invest Now</span>
+                    <span>Start Now</span>
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg blur opacity-60 animate-pulse"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-md blur opacity-60 animate-pulse"></div>
                 </Link>
                 <Link 
                   to="/deposit" 
