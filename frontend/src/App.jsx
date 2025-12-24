@@ -10,6 +10,7 @@ import Deposit from './pages/Deposit';
 import Invest from './pages/Invest';
 import Admin from './pages/Admin';
 import Referrals from './pages/Referrals';
+import HowToEarn from './pages/HowToEarn';
 
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -48,6 +49,7 @@ function App() {
               />
               <Route path="/invest" element={<Invest />} />
               <Route path="/referrals" element={<Referrals />} />
+              <Route path="/how-to-earn" element={<HowToEarn />} />
               <Route path="/admin" element={<Admin />} />
             </Routes>
           </div>

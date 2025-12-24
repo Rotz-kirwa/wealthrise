@@ -128,7 +128,17 @@ const Home = () => {
       {/* Users Investment Table */}
       <section className="py-6 sm:py-8 px-4 bg-gray-800">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-xl sm:text-2xl font-bold text-white text-center mb-4 sm:mb-6">Recent Investments & Payouts</h2>
+          <div className="flex items-center justify-center mb-4 sm:mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-white text-center mr-3">Recent Investments & Payouts</h2>
+            <Link 
+              to="/how-to-earn"
+              className="group relative bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg transform transition-all duration-300 hover:scale-110 hover:shadow-xl flex items-center space-x-1"
+            >
+              <span className="animate-pulse">💡</span>
+              <span>How to Earn</span>
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-bounce"></div>
+            </Link>
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             <LiveUsersTable />
             
