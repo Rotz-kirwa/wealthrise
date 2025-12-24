@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Smartphone, Wallet, Plus, Minus, CreditCard, TrendingUp, Info, CheckCircle, Clock, Shield, Zap, Users, Share2, Gift } from 'lucide-react';
+import { Smartphone, Wallet, Plus, Minus, CreditCard, TrendingUp, Info, CheckCircle, Clock, Shield } from 'lucide-react';
 import { useBalance } from '../context/BalanceContext';
 import { mpesaAPI } from '../services/mpesa';
 
@@ -348,113 +348,6 @@ const Deposit = () => {
             <div className="text-4xl mb-4">👥</div>
             <h3 className="text-xl font-bold mb-2">Refer & Earn</h3>
             <p className="opacity-90">Earn 20% from every friend's investment</p>
-          </div>
-        </div>
-
-        {/* Referral Section */}
-        <div className="mt-12 bg-gray-800 rounded-3xl p-8 text-white shadow-xl border border-gray-700">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-4 flex items-center justify-center">
-              <Gift className="w-10 h-10 mr-4 text-yellow-400" />
-              🎉 Refer Friends & Earn Big!
-            </h2>
-            <p className="text-xl opacity-90">Turn your network into your net worth</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Referral Benefits */}
-            <div className="bg-gray-700 rounded-2xl p-6 border border-gray-600">
-              <h3 className="text-2xl font-bold mb-6 flex items-center">
-                <Users className="w-8 h-8 mr-3 text-yellow-400" />
-                How Referrals Work
-              </h3>
-              <div className="space-y-4">
-                <div className="flex items-start">
-                  <div className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">1</div>
-                  <div>
-                    <p className="font-semibold">Share Your Link</p>
-                    <p className="opacity-90 text-sm">Send your unique referral link to friends</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">2</div>
-                  <div>
-                    <p className="font-semibold">They Invest</p>
-                    <p className="opacity-90 text-sm">Your friend signs up and makes their first investment</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <div className="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-4 mt-1">3</div>
-                  <div>
-                    <p className="font-semibold">You Earn 20%</p>
-                    <p className="opacity-90 text-sm">Get instant 20% commission on their investment</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Referral Calculator */}
-            <div className="bg-gray-700 rounded-2xl p-6 border border-gray-600">
-              <h3 className="text-2xl font-bold mb-6 flex items-center">
-                <TrendingUp className="w-8 h-8 mr-3 text-green-400" />
-                Earnings Calculator
-              </h3>
-              <div className="space-y-4">
-                <div className="bg-green-600 bg-opacity-30 rounded-xl p-4 border border-green-500">
-                  <p className="text-lg font-bold">Friend invests KES 1,000</p>
-                  <p className="text-2xl font-bold text-green-400">You earn: KES 200 💰</p>
-                </div>
-                <div className="bg-blue-600 bg-opacity-30 rounded-xl p-4 border border-blue-500">
-                  <p className="text-lg font-bold">Friend invests KES 5,000</p>
-                  <p className="text-2xl font-bold text-blue-400">You earn: KES 1,000 💰</p>
-                </div>
-                <div className="bg-purple-600 bg-opacity-30 rounded-xl p-4 border border-purple-500">
-                  <p className="text-lg font-bold">Friend invests KES 50,000</p>
-                  <p className="text-2xl font-bold text-purple-400">You earn: KES 10,000 💰</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Referral Link Section */}
-          <div className="mt-8 bg-gray-700 rounded-2xl p-6 border border-gray-600">
-            <h3 className="text-2xl font-bold mb-4 flex items-center justify-center">
-              <Share2 className="w-8 h-8 mr-3 text-yellow-400" />
-              Your Referral Link
-            </h3>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input
-                type="text"
-                value="https://wealthrise.com/ref/USER123"
-                readOnly
-                className="flex-1 px-4 py-3 bg-gray-600 border border-gray-500 text-white rounded-xl focus:outline-none"
-              />
-              <button className="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-3 rounded-xl transition">
-                📋 Copy Link
-              </button>
-            </div>
-            <p className="text-center mt-4 opacity-90">
-              💡 The more friends you refer, the more you earn! No limits on referral earnings.
-            </p>
-          </div>
-
-          {/* Bonus Incentives */}
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-gray-800 rounded-2xl p-4 text-center border border-gray-600">
-              <div className="text-3xl mb-2">🏆</div>
-              <p className="font-bold">Refer 5 Friends</p>
-              <p className="text-2xl font-bold text-green-400">Bonus: KES 500</p>
-            </div>
-            <div className="bg-gray-800 rounded-2xl p-4 text-center border border-gray-600">
-              <div className="text-3xl mb-2">🔥</div>
-              <p className="font-bold">Refer 10 Friends</p>
-              <p className="text-2xl font-bold text-blue-400">Bonus: KES 1,500</p>
-            </div>
-            <div className="bg-gray-800 rounded-2xl p-4 text-center border border-gray-600">
-              <div className="text-3xl mb-2">👑</div>
-              <p className="font-bold">Refer 20 Friends</p>
-              <p className="text-2xl font-bold text-purple-400">Bonus: KES 5,000</p>
-            </div>
           </div>
         </div>
       </div>

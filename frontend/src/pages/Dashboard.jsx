@@ -1,7 +1,6 @@
 import { TrendingUp, DollarSign, PieChart, Activity } from 'lucide-react';
 import { useBalance } from '../context/BalanceContext';
 import { useState } from 'react';
-import ReferralSection from '../components/ReferralSection';
 import InvestmentPlans from '../components/InvestmentPlans';
 
 const Dashboard = () => {
@@ -52,11 +51,6 @@ const Dashboard = () => {
         <div className="mb-8">
           <h2 className="text-xl font-bold text-white mb-4">Investment Plans</h2>
           <InvestmentPlans />
-        </div>
-
-        {/* Referral Section */}
-        <div className="mb-8">
-          <ReferralSection />
         </div>
 
         {/* Recent Investments (local) */}
