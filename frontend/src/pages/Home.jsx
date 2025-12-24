@@ -36,12 +36,6 @@ const Home = () => {
           >
             🎁 REFER & EARN
           </Link>
-          <Link 
-            to="/dashboard"
-            className="bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg text-sm sm:text-lg font-bold hover:bg-green-700 transition shadow-lg backdrop-blur-sm"
-          >
-            💰 INVEST NOW
-          </Link>
         </div>
       </section>
 
