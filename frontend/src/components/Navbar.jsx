@@ -35,7 +35,7 @@ const Navbar = () => {
                 {location.pathname !== '/' && (
                   <Link to="/" className="hover:text-green-300 text-green-400">Main Board</Link>
                 )}
-                <Link to="/dashboard" className="hover:text-green-300 text-green-400">Dashboard</Link>
+                <Link to="/dashboard" className="hover:text-green-300 text-green-400">Invest Now</Link>
                 <Link to="/deposit" className="hover:text-green-300 text-green-400 flex items-center relative group">
                   <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg transform transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl group-hover:from-green-400 group-hover:to-emerald-500">
                     <Plus className="w-6 h-6 text-white font-bold" />
@@ -113,7 +113,7 @@ const Navbar = () => {
                     className="text-green-400 hover:text-green-300 px-2 py-1"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Dashboard
+                    Invest Now
                   </Link>
                   <Link 
                     to="/deposit" 
