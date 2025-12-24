@@ -68,17 +68,25 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button and Balance */}
-          <div className="md:hidden flex items-center space-x-3">
+          <div className="md:hidden flex items-center space-x-2">
             {user && (
-              <Link 
-                to="/deposit" 
-                className="flex items-center space-x-2 bg-gray-700 px-3 py-1.5 rounded-lg hover:bg-gray-600 transition-colors"
-              >
-                <div className="w-6 h-6 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
-                  <Plus className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-xs font-medium text-green-400">KES {balance.toFixed(2)}</span>
-              </Link>
+              <>
+                <Link 
+                  to="/dashboard" 
+                  className="bg-green-600 text-white px-3 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm font-medium"
+                >
+                  💰 Invest
+                </Link>
+                <Link 
+                  to="/deposit" 
+                  className="flex items-center space-x-1 bg-gray-700 px-2 py-2 rounded-lg hover:bg-gray-600 transition-colors"
+                >
+                  <div className="w-5 h-5 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center">
+                    <Plus className="w-3 h-3 text-white" />
+                  </div>
+                  <span className="text-xs font-medium text-green-400">KES {balance.toFixed(2)}</span>
+                </Link>
+              </>
             )}
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -108,13 +116,6 @@ const Navbar = () => {
                       Main Board
                     </Link>
                   )}
-                  <Link 
-                    to="/dashboard" 
-                    className="text-green-400 hover:text-green-300 px-2 py-1"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Invest Now
-                  </Link>
                   <Link 
                     to="/deposit" 
                     className="text-green-400 hover:text-green-300 px-2 py-1"
