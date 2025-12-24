@@ -206,24 +206,89 @@ const Home = () => {
       {/* Features Section */}
       <section className="py-8 sm:py-12 lg:py-16 px-4 bg-gray-800">
         <div className="container mx-auto">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-center text-white mb-6 sm:mb-8 lg:mb-12">
-            Why Choose WealthRise?
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            <div className="text-center p-6">
-              <Shield className="w-12 h-12 text-green-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Secure Platform</h3>
-              <p className="text-gray-400">Bank-level security to protect your investments</p>
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+              🚀 Why 50,000+ Investors Choose WealthRise
+            </h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Join Kenya's fastest-growing investment community
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {/* Security Feature */}
+            <div className="group relative bg-gradient-to-br from-blue-600 to-blue-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 text-center">🛡️ Bank-Level Security</h3>
+                <p className="text-blue-100 text-center text-sm leading-relaxed">
+                  Your investments are protected with military-grade encryption and secure M-Pesa integration
+                </p>
+                <div className="mt-4 text-center">
+                  <span className="inline-block bg-white bg-opacity-20 text-white text-xs px-3 py-1 rounded-full">
+                    SSL Encrypted
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="text-center p-6">
-              <Zap className="w-12 h-12 text-green-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Fast Execution</h3>
-              <p className="text-gray-400">Lightning-fast trades and real-time market data</p>
+
+            {/* Speed Feature */}
+            <div className="group relative bg-gradient-to-br from-green-600 to-emerald-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-700 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <Zap className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 text-center">⚡ Instant Transactions</h3>
+                <p className="text-green-100 text-center text-sm leading-relaxed">
+                  Lightning-fast deposits and withdrawals through M-Pesa. Start earning in under 60 seconds
+                </p>
+                <div className="mt-4 text-center">
+                  <span className="inline-block bg-white bg-opacity-20 text-white text-xs px-3 py-1 rounded-full">
+                    < 60 Seconds
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="text-center p-6">
-              <Users className="w-12 h-12 text-green-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Expert Support</h3>
-              <p className="text-gray-400">24/7 support from financial experts</p>
+
+            {/* Support Feature */}
+            <div className="group relative bg-gradient-to-br from-purple-600 to-purple-800 p-6 rounded-2xl shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity"></div>
+              <div className="relative z-10">
+                <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4 mx-auto">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 text-center">👥 24/7 Expert Support</h3>
+                <p className="text-purple-100 text-center text-sm leading-relaxed">
+                  Dedicated WhatsApp support team ready to help you maximize your investment returns
+                </p>
+                <div className="mt-4 text-center">
+                  <span className="inline-block bg-white bg-opacity-20 text-white text-xs px-3 py-1 rounded-full">
+                    Always Online
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="mt-12 text-center">
+            <div className="flex flex-wrap justify-center items-center gap-6 text-gray-400">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span className="text-sm">50,000+ Active Investors</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <span className="text-sm">KES 2B+ Invested</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                <span className="text-sm">99.9% Uptime</span>
+              </div>
             </div>
           </div>
         </div>
