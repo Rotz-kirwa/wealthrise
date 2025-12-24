@@ -78,7 +78,7 @@ const Navbar = () => {
                 >
                   <span className="relative z-10 flex items-center space-x-1">
                     <span>💰</span>
-                    <span>Invest</span>
+                    <span>Invest Now</span>
                   </span>
                   <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg blur opacity-60 animate-pulse"></div>
                 </Link>
